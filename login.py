@@ -1,11 +1,15 @@
 import asyncio
 import json
+import re
 from pyrogram import Client, errors
 
 
 # load config
 config = (json.load(open("config.json")))
 # group target link
+group_target_id = input('group_source_username or link to join for report')
+gi = re.sub("(@)|(https://)|(http://)", "", group_target_id)
+#workdir = 'session/'
 
 
 def main():
@@ -17,6 +21,10 @@ def main():
         with Client(phone, api_id, api_hash, workdir="session") as app:
             if app.get_me():
                 print(phone, "is logined")
+                try:
+                    app.join_chat(gi)
+                except BaseException:
+                    print("couldn't add u to the groups or maybe this number already in group")
             else:
                print(phone, "login failed")
 main()
