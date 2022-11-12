@@ -1,3 +1,4 @@
+use new repo link : https://github.com/nimmadev/instagram-mass-report-python
 
 # Tele-Gram mass report
 
