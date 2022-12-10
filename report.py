@@ -23,8 +23,6 @@ def get_reason(text):
         return InputReportReasonSpam()
     elif text == "Report for spam":
         return InputReportReasonPersonalDetails()
-    elif text == "Other":
-        return InputReportReasonOther()
 
 #report = app.send(report_peer)
 
@@ -33,26 +31,23 @@ async def main():
      #resportreason = "Report for copyrighted content"
      for x in listofchoise:
         print(x)
-     resportreas = int(input("whats ur  reason: type 1-9: "))
+     resportreas = int(input("whats ur  reason: type 1-8: "))
      resportreaso = listofchoise[resportreas - 1]
      resportreason = get_reason(resportreaso)
      print("")
      print(resportreason)
      print("")
     # resportreason = input("whats ur pepoet reason: ")
-     dat =  input("channel, channelid, user: " )
-     if dat.lower() == "channel":
+     dat =  input("How do you want to report username or id: " )
+     if dat.lower() == "username":
         pee = input("type username of Channel or group : ")
-     elif dat.lower() == "channelid":
-        pee = input("type id of Channel or group : ")
+     elif dat.lower() == "id":
+        pee = input("type id of Channel or group  without -100: ")
         pee = int(str(-100)+str(pee))
-     elif dat.lower() == 'group':
-        pee = input("type groupid : ")
      for account in config["accounts"]:
         phone = account["phone"]
         async with Client(phone, workdir="session") as app:
-            
-            if dat.lower() == "channel" or 'channelid':
+            if dat.lower() == "username" or 'id':
                 #await app.get_chat(-1001433138571)
                 peer = await app.resolve_peer(pee)
                 peer_id = peer.channel_id

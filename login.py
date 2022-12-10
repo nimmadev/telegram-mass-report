@@ -23,8 +23,10 @@ def main():
                 print(phone, "is logined")
                 try:
                     app.join_chat(gi)
-                except BaseException:
-                    print("couldn't add u to the groups or maybe this number already in group")
+                except errors.UserAlreadyParticipant:
+                    app.get_chat(gi)
+                except:
+                    print("couldnt join chat")
             else:
                print(phone, "login failed")
 main()
